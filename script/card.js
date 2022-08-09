@@ -24,22 +24,22 @@ const insetDialogBox = ({ massage, btnText }) => `<div class="start-container">
 
 //! all image src and thare name
 const cardImageArray = [
-	{ src: 'https://!img.icons8.com/nolan/100/py.png', name: 'python' },
-	{ src: 'https://!img.icons8.com/nolan/100/py.png', name: 'python' },
-	{ src: 'https://!img.icons8.com/nolan/64/adobe-illustrator.png', name: 'adobe-illustrator' },
-	{ src: 'https://!img.icons8.com/nolan/64/adobe-illustrator.png', name: 'adobe-illustrator' },
-	{ src: 'https://!img.icons8.com/nolan/64/adobe-photoshop.png', name: 'adobe-photoshop' },
-	{ src: 'https://!img.icons8.com/nolan/64/adobe-photoshop.png', name: 'adobe-photoshop' },
-	{ src: 'https://!img.icons8.com/nolan/64/js.png', name: 'Javascript' },
-	{ src: 'https://!img.icons8.com/nolan/64/js.png', name: 'Javascript' },
-	{ src: 'https://!img.icons8.com/nolan/64/pycharm.png', name: 'pycharm' },
-	{ src: 'https://!img.icons8.com/nolan/64/pycharm.png', name: 'pycharm' },
-	{ src: 'https://!img.icons8.com/nolan/64/sublime-text-new-logo.png', name: 'sublime' },
-	{ src: 'https://!img.icons8.com/nolan/64/sublime-text-new-logo.png', name: 'sublime' },
-	{ src: 'https://!img.icons8.com/color/100/000000/react-native.png', name: 'react' },
-	{ src: 'https://!img.icons8.com/color/100/000000/react-native.png', name: 'react' },
-	{ src: 'https://!img.icons8.com/nolan/64/discord-logo.png', name: 'discord' },
-	{ src: 'https://!img.icons8.com/nolan/64/discord-logo.png', name: 'discord' }
+	{ src: 'https://img.icons8.com/nolan/100/py.png', name: 'python' },
+	{ src: 'https://img.icons8.com/nolan/100/py.png', name: 'python' },
+	{ src: 'https://img.icons8.com/nolan/64/adobe-illustrator.png', name: 'adobe-illustrator' },
+	{ src: 'https://img.icons8.com/nolan/64/adobe-illustrator.png', name: 'adobe-illustrator' },
+	{ src: 'https://img.icons8.com/nolan/64/adobe-photoshop.png', name: 'adobe-photoshop' },
+	{ src: 'https://img.icons8.com/nolan/64/adobe-photoshop.png', name: 'adobe-photoshop' },
+	{ src: 'https://img.icons8.com/nolan/64/js.png', name: 'Javascript' },
+	{ src: 'https://img.icons8.com/nolan/64/js.png', name: 'Javascript' },
+	{ src: 'https://img.icons8.com/nolan/64/pycharm.png', name: 'pycharm' },
+	{ src: 'https://img.icons8.com/nolan/64/pycharm.png', name: 'pycharm' },
+	{ src: 'https://img.icons8.com/nolan/64/sublime-text-new-logo.png', name: 'sublime' },
+	{ src: 'https://img.icons8.com/nolan/64/sublime-text-new-logo.png', name: 'sublime' },
+	{ src: 'https://img.icons8.com/color/100/000000/react-native.png', name: 'react' },
+	{ src: 'https://img.icons8.com/color/100/000000/react-native.png', name: 'react' },
+	{ src: 'https://img.icons8.com/nolan/64/discord-logo.png', name: 'discord' },
+	{ src: 'https://img.icons8.com/nolan/64/discord-logo.png', name: 'discord' }
 ]
 
 //! game state wich change during the game
