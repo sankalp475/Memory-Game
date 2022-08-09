@@ -29,7 +29,7 @@
 }
 .top .score-bard {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 }
 .score-bard > p {
 	text-align: center;
