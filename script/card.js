@@ -192,6 +192,7 @@ function checkforCard(cardFliped, cardType) {
 	if (cardFliped.length == 2) {
 		if (cardFliped[0].getAttribute('name') === cardFliped[1].getAttribute('name')) {
 			state.winCount += 1;
+			console.log(state.winCount, card.length / 2 )
 			if (state.winCount === Math.floor(card.length / 2)) {
 				state.isVictory = true;
 				state.isAllmatched = true;
@@ -226,7 +227,7 @@ function updateTimer() {
 			baseTime--;
 			state.time = baseTime;
 			document.querySelector('.t').innerHTML = state.time;
-			console.log(state)
+			// console.log(state)
 			if (baseTime === 0) {
 				if (state.winCount != Math.floor(card.length / 2)) {
 					state.gameOver = true;
