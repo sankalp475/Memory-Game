@@ -101,14 +101,9 @@ function resetGame() {
 	})
 	state.time = 100
 	state.isAllmatched = false
-	state.massage = ''
-	state.btnText = ''
-	state.current_card = ''
 	state.isMatchStarted = false
 	state.gameOver = false
 	state.totleFlip = 0
-	state.allCard = ''
-	state.gameStatus = ''
 	state.isReset = false
 	state.isVictory = false
 	state.score = 0
@@ -192,7 +187,6 @@ function checkforCard(cardFliped, cardType) {
 	if (cardFliped.length == 2) {
 		if (cardFliped[0].getAttribute('name') === cardFliped[1].getAttribute('name')) {
 			state.winCount += 1;
-			console.log(state.winCount, card.length / 2 )
 			if (state.winCount === Math.floor(card.length / 2)) {
 				state.isVictory = true;
 				state.isAllmatched = true;
