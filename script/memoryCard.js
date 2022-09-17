@@ -91,47 +91,60 @@ const state = {
 			displayScreen.dataset.key = localStorage.getItem("key");
 		}
 	},
-	_reset: (elmement) => {
+	_reset: (elmement, { isRandomise } ) => {
 		setTimeout(() => {
 			state.flipCount = 0;
 			state.remaningTime = 100;
 			state.winCount = 0;
-			state.isTimerStart = false
+			state.isTimerStart = false;
 			state.isTimeEnded = false,
-				state.isGameStarted = false,
-				elmement.innerHTML = state.flipCount;
-			let cards = document.querySelectorAll('.card');
+			state.isGameStarted = false,
+			elmement.innerHTML = state.flipCount;
+			let cards = document.querySelectorAll(".card");
 			let randomCard = ranDomiser();
-			cards.forEach((card, index) => {
-				setTimeout(() => {
-					card.querySelectorAll(".front")[0].innerHTML = randomCard[index].src;
-					card.dataset.name = randomCard[index].name;
-				}, 1000);
-				card.dataset.matchedcard = false
-			})
+			if (isRandomise) {
+
+				cards.forEach((card, index) => {
+					setTimeout(() => {
+						card.querySelectorAll(".front")[0].innerHTML = randomCard[index].src;
+						card.dataset.name = randomCard[index].name;
+					}, 1000);
+					card.dataset.matchedcard = false;
+				});
+			}
 		}, 500);
-	}
+	},
 };
 
 window.startgame = () => {
 	let displayScreen = document.querySelector(".game-popup-bord");
 	if (displayScreen.dataset.key == "GS" || displayScreen.dataset.key == "Gs") {
 		displayScreen.dataset.key = "null";
-		state._reset(flipCounter)
+		state._reset(flipCounter, { isRandomise: true });
 	}
 	if (displayScreen.dataset.key == "GE" || displayScreen.dataset.key == "Ge") {
 		displayScreen.dataset.key = "null";
-		state._reset(flipCounter)
+		state._reset(flipCounter, { isRandomise: true });
 	}
 	if (displayScreen.dataset.key == "GW" || displayScreen.dataset.key == "Gw") {
 		displayScreen.dataset.key = "null";
-		card.forEach((card) => {
+		card.forEach((card, index) => {
 			let frontFace = card.querySelector(".front");
 			let backFace = card.querySelector(".back");
-			backFace.classList.remove("back");
-			backFace.classList.add("front");
-			frontFace.classList.remove("front");
-			frontFace.classList.add("back");
+			let temp = frontFace.innerHTML;
+			frontFace.innerHTML = backFace.innerHTML;
+			backFace.innerHTML = temp;
+			let randomCard = ranDomiser();
+			setTimeout(() => {
+				card.querySelectorAll(".front")[0].innerHTML = randomCard[index].src;
+				card.dataset.name = randomCard[index].name;
+			}, 1000)
+			// frontFace.innerHTML = randomCard[index].src
+			// card.dataset.name = randomCard[index].name;
+			// backFace.classList.remove("back");
+			// backFace.classList.add("front");
+			// frontFace.classList.remove("front");
+			// frontFace.classList.add("back");
 			card.classList.remove("matched");
 			setTimeout(() => {
 				card.classList.remove("active-match");
@@ -161,8 +174,8 @@ function updateTimer() {
 				state.flipCount;
 			document.querySelector(".game-end .Flips-data").innerHTML =
 				state.winCount * 2;
-			displayScreen.dataset.key = 'GE'
-			audio.gameOver_sound.play()
+			displayScreen.dataset.key = "GE";
+			audio.gameOver_sound.play();
 		}
 		// state.popup_toggle()
 		if (
@@ -170,11 +183,15 @@ function updateTimer() {
 			displayScreen.dataset.key == "Gw"
 		) {
 			clearInterval(i);
-			state._reset(flipCounter)
+			state._reset(flipCounter, { isRandomise: false });
 		}
-	    console.log(`%cMix-or-Match game %c`,"font-size:14px; color: #ff3860;background:black;padding:8px;padding-right:0px", "font-size:14px;color:orange;font-weight:bold;background:black;padding:8px;padding-left:0px")
 	}, 1000);
 }
+console.log(
+	`%cMix-or-Match game %c`,
+	"font-size:14px; color: #ff3860;background:black;padding:8px;padding-right:0px",
+	"font-size:14px;color:orange;font-weight:bold;background:black;padding:8px;padding-left:0px"
+);
 // console.log(`%cMix-or-Match game %c`,"font-size:14px; color: #ff3860;background:black;padding:8px;padding-right:0px", "font-size:14px;color:orange;font-weight:bold;background:black;padding:8px;padding-left:0px")
 
 function ranDomiser() {
@@ -188,7 +205,7 @@ function _HandleCardEvent(card, index, randomCard) {
 	card.addEventListener("click", (event) => {
 		if (!card.classList.contains("matched")) {
 			card.classList.add("active-match");
-			card.setAttribute('data-cardfliped', true);
+			card.setAttribute("data-cardfliped", true);
 			audio.cardFlipSound.play();
 			flipCounter.innerHTML = state.flipCount++;
 		}
@@ -204,8 +221,8 @@ function checkForMatch(index, flipedcard) {
 	// console.log(card[index])
 	if (flipedcard.length == 2) {
 		if (flipedcard[0].dataset.name == flipedcard[1].dataset.name) {
-			flipedcard[0].dataset.matchedcard = true
-			flipedcard[1].dataset.matchedcard = true
+			flipedcard[0].dataset.matchedcard = true;
+			flipedcard[1].dataset.matchedcard = true;
 			// console.log(" %cmatched%c ","font-size:14px; color: #4fdee5;background:black;padding:8px;padding-right:0px", "font-size:14px;color:orange;font-weight:bold;background:black;padding:8px;padding-left:0px")
 			_score_check();
 			flipedcard.forEach((card) => {
@@ -220,8 +237,8 @@ function checkForMatch(index, flipedcard) {
 				}, 600);
 			});
 		} else {
-			flipedcard[0].dataset.matchedcard = false
-			flipedcard[1].dataset.matchedcard = false
+			flipedcard[0].dataset.matchedcard = false;
+			flipedcard[1].dataset.matchedcard = false;
 			// document.querySelector('.')
 			// console.log(" %cun-matched%c ","font-size:14px; color: #ff3860;background:black;padding:8px;padding-right:0px", "font-size:14px;color:orange;font-weight:bold;background:black;padding:8px;padding-left:0px")
 			flipedcard.forEach((card) => {
@@ -244,30 +261,29 @@ function _score_check() {
 			state._TOTLE_MOVE * 2;
 	}
 }
-refreshbtn.addEventListener('click', (event) => {
-	let _matchedcard = document.querySelectorAll('div[data-matchedcard="true"]')
+refreshbtn.addEventListener("click", (event) => {
+	let _matchedcard = document.querySelectorAll('div[data-matchedcard="true"]');
 	state.refresh = true;
 	if (_matchedcard.length > 0) {
 		_matchedcard.forEach((card, index) => {
-			let frontcard = card.querySelector('.front')
-			let backcard = card.querySelector('.back')
-			frontcard.classList.add('back')
-			frontcard.classList.remove('front')
-			backcard.classList.add('front')
-			backcard.classList.remove('back')
-			card.classList.remove('matched')
+			let frontcard = card.querySelector(".front");
+			let backcard = card.querySelector(".back");
+			frontcard.classList.add("back");
+			frontcard.classList.remove("front");
+			backcard.classList.add("front");
+			backcard.classList.remove("back");
+			card.classList.remove("matched");
 			setTimeout(() => {
-				card.dataset.matchedcard = false
-			}, 800)
-			state._reset(flipCounter)
-		})
+				card.dataset.matchedcard = false;
+			}, 800);
+			state._reset(flipCounter, { isRandomise: true });
+		});
 	} else {
 		_matchedcard.forEach((card, index) => {
-			card.dataset.matchedcard = false
-		})
-
+			card.dataset.matchedcard = false;
+		});
 	}
-})
+});
 const start = (() => {
 	state.popup_toggle();
 	let randomCard = ranDomiser();
