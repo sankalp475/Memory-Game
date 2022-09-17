@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 * {
 	margin: 0;
 	padding: 0;
@@ -18,52 +19,44 @@
 .unclickable {
 	pointer-events: none;
 }
-.top {
-	width: 100%;
-}
-.top h1.header {
-	text-align: center;
-	font-size: 2.1rem;
-	font-weight: 100;
-	font-family: Arial, Helvetica;
-}
-.top .score-bard {
-	display: flex;
-	justify-content: space-evenly;
-}
-.score-bard > p {
-	text-align: center;
-	text-transform: capitalize;
-	font-size: 1.3rem;
-}
-.score-bard > p span {
-	color: red;
-}
 
-.game_container {
+.game-box {
+	border: 1px solid #000;
+	border-radius: 10px;
+	box-shadow: 7px 8px 20px 0px #cfcfcf;
+}
+.score-board {
+	margin: 10px 10px 0 10px;
+	padding: 10px;
+	border-radius: 10px;
+}
+h1.header {
+	text-align: center;
+	font-size: 2.1.2rem;
+	font-weight: 100;
+	font-family: "Poppins", sans-serif;
+}
+.game-container {
 	display: grid;
-	/* width: 100%; */
-	/* padding: 10px; */
-	margin-top: 10px;
+	padding: 10px;
+	grid-gap: 10px;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(4, 1fr);
-	grid-gap: 10px;
+	place-items: center;
+	grid-row-gap: 15px;
 }
-
-.flip-card {
-	width: 118px;
-	height: 118px;
-	background-color: transparent;
+.card {
+	/* padding: 10px; */
+	/* margin: 5px; */
+	width: 100px;
+	height: 100px;
+	border-radius: 10px;
+	perspective: 1000px;
 	border: 2px solid transparent;
-	border-radius: 10px !important;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	cursor: pointer;
+	
 }
-
-/* background-color: rgb(12, 13, 14);
-	border: 2px solid red; */
-.card-inner {
+.inner {
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -72,7 +65,7 @@
 	transform-style: preserve-3d;
 }
 
-.game_container.fliped .active-match .card-inner {
+.card.card-flip-move.active-match .inner {
 	transition: transform 0.8s;
 	transform: rotateY(180deg);
 }
@@ -83,54 +76,186 @@
 	height: 100%;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
-	background-color: rgb(12, 13, 14);
-	border: 2px solid red;
-	border-radius: 10px !important;
-}
-.back {
-	transform: rotateY(180deg);
-}
-.back img,
-.front img {
-	width: 100%;
-	height: 100%;
-	border-radius: 10px;
-}
-body.dialog-box {
-	position: relative;
-	height: 100vh;
-	width: 100%;
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-}
-.dialog-box div.start-container {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: #fff;
-	padding: 15px;
-	border-radius: 10px;
-	text-align: center;
-	/* z-index: 9999999; */
-}
-div.start-container h1 {
-	font-size: 1.5rem;
-	padding: 10px 0;
-}
-div.start-container button.btn {
-	padding: 10px 30px;
-	border-radius: 10px;
-	border: none;
-	background-color: rgb(2, 111, 253);
-	color: #fff;
-	margin: 10px 0;
-	text-transform: uppercase;
+	background-color: #000;
+	border-radius: 8px;
 }
 
+.front {
+	width: 100%;
+	height: 100%;
+	color: #00e3ff;
+	transform: rotateY(180deg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid #ff3860;
+	cursor: pointer;
+}
+
+.back {
+	color: #00e3ff;
+	fill: #ff3860;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+.front svg,
+.back svg {
+	width: 50px;
+	height: 50px;
+}
+
+.score-board {
+	display: flex;
+	justify-content: space-around;
+	text-align: center;
+	align-items: center;
+}
+.score-board .flips-count,
+.score-board .score-count {
+	margin: 0;
+	padding: 0;
+	font-size: 1.1rem;
+	font-weight: 600;
+	text-transform: capitalize;
+	font-family: Nunito;
+}
+.score-board .flips-count span,
+.score-board .score-count span {
+	color: hsl(348, 100%, 61%);
+	font-family: Nunito;
+	width: 10px;
+}
+.refresh-btn {
+	border-radius: 5px;
+	font-family: Nunito;
+	font-weight: 600;
+	font-size: 1rem;
+	text-transform: capitalize;
+	background: transparent;
+	border: 1px solid hsl(348, 100%, 61%);
+	color: hsl(348, 100%, 61%);
+	padding: 5px 21px;
+}
+.refresh-btn:hover {
+	color: rgb(255, 255, 255);
+	background-color: hsl(348, 100%, 61%);
+}
 .matched {
-	position: relative;
-	width: 118px;
-	height: 118px;
 	filter: grayscale(1);
-	pointer-events: none;
+}
+
+.rotate {
+	transform: rotate(360deg);
+	transition: transform 0.8s;
+}
+.d-none {
+	display: none;
+}
+.game-popup-bord[data-key="null"],
+.game-popup-bord[data-key=""]{
+	display: none;
+}
+
+.game-popup-bord[data-key="GS"] .game-end,
+.game-popup-bord[data-key="GS"] .game-win {
+	display: none;
+}
+.game-popup-bord[data-key="GS"] .game-start {
+	display: inline-block;
+}
+.game-popup-bord[data-key="GE"] .game-start,
+.game-popup-bord[data-key="GE"] .game-win {
+	display: none;
+}
+.game-popup-bord[data-key="GE"] .game-end {
+	display: inline-block;
+}
+
+.game-popup-bord[data-key="GW"] .game-start,
+.game-popup-bord[data-key="GW"] .game-end {
+	display: none;
+}
+.game-popup-bord[data-key="GW"] .game-win  {
+	display: inline-block;
+}
+
+.game-popup-bord[data-key="Gw"] .game-start,
+.game-popup-bord[data-key="Gw"] .game-end {
+	display: none;
+}
+.game-popup-bord[data-key="Gw"] .game-win  {
+	display: inline-block;
+}
+.game-popup-bord {
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+	backdrop-filter: blur(5px);
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.game-screen {
+	padding: 10px;
+	background-color: #fff;
+	border-radius: 10px;
+	width: 300px;
+	text-align: center;
+}
+.game-screen h1 {
+	font-size: 2.2rem;
+	font-family:cursive;
+	text-transform: capitalize;
+}
+.game-screen button.start {
+    padding: 10px 40px;
+	margin: 20px 0px 10px;
+	border-radius: 10px;
+	background-color: #00e3ff;
+	border: none;
+	font-size: 1.2rem;
+	font-family:cursive;
+	text-transform: capitalize;
+	outline: none;
+}
+.game-screen.game-end .score {
+	display: flex;
+	justify-content: space-evenly;
+	margin: 10px 0px;
+}
+.game-screen.game-end p span{
+	font-size: 1.2rem;
+	font-family:cursive;
+}
+.score-data,
+.Flips-data {
+	color: #ff3860;
+}
+.game-screen.game-end .restart {
+	margin-top: 10px;
+}
+
+.game-screen.game-win {
+	width: 430px;
+}
+.game-screen.game-win > h1 {
+	font-size: 2rem;
+}
+.game-screen.game-win .score {
+	display: flex;
+	justify-content: space-evenly;
+	margin: 10px 0px;
+}
+.game-screen.game-win .restart {
+	margin-top: 10px;
 }
