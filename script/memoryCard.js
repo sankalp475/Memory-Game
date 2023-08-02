@@ -25,7 +25,7 @@ const {
 	_icon_7,
 	_icon_8,
 } = icon;
-const cardImageArray = [
+const cardIconArray = [
 	{ src: _icon_1._SvgCode(), name: _icon_1.type },
 	{ src: _icon_1._SvgCode(), name: _icon_1.type },
 	{ src: _icon_2._SvgCode(), name: _icon_2.type },
@@ -195,7 +195,7 @@ console.log(
 // console.log(`%cMix-or-Match game %c`,"font-size:14px; color: #ff3860;background:black;padding:8px;padding-right:0px", "font-size:14px;color:orange;font-weight:bold;background:black;padding:8px;padding-left:0px")
 
 function ranDomiser() {
-	let cardData = cardImageArray;
+	let cardData = cardIconArray;
 	cardData.sort(() => Math.random() - 0.5);
 	return cardData;
 }
