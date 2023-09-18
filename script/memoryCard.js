@@ -1,3 +1,5 @@
+// this is comment
+console.log("this is console code ... fuck ")
 import icon from "./icon.js";
 const audio = {
 	cardFlipSound: new Audio("./assets/audio/Assets_Audio_flip.wav"),
